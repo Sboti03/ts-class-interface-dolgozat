@@ -2,16 +2,16 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Error_1 = require("./Error");
 const Statue_1 = require("./Statue");
+let errorMsgs = [];
+errorMsgs.push(new Error_1.ErrorMsg(0, 'wrong-title', 'Please enter a valid title'));
+errorMsgs.push(new Error_1.ErrorMsg(1, 'wrong-year', 'Please enter a year'));
+errorMsgs.push(new Error_1.ErrorMsg(2, 'wrong-price', 'Please enter a valid price'));
+errorMsgs.push(new Error_1.ErrorMsg(3, 'wrong-height', 'Please enter a height'));
+let artWorks = [];
 document.addEventListener('DOMContentLoaded', () => {
     let formError = document.getElementById('form-error');
-    let errorMsgs = [];
-    errorMsgs.push(new Error_1.ErrorMsg(0, 'wrong-title', 'Please enter a valid title'));
-    errorMsgs.push(new Error_1.ErrorMsg(1, 'wrong-year', 'Please enter a year'));
-    errorMsgs.push(new Error_1.ErrorMsg(2, 'wrong-price', 'Please enter a valid price'));
-    errorMsgs.push(new Error_1.ErrorMsg(3, 'wrong-height', 'Please enter a height'));
     let errorManager = new Error_1.ErrorManager(formError, errorMsgs);
     errorManager.setError(-1);
-    let artWorks = [];
     writeOut();
     document.getElementById('title').addEventListener('change', e => {
         let title = e.currentTarget.value;
@@ -60,17 +60,17 @@ document.addEventListener('DOMContentLoaded', () => {
             writeOut();
         }
     });
-    function writeOut() {
-        let out = document.getElementById('out');
-        let allPirce = 0;
-        artWorks.forEach(e => allPirce += e.price);
-        document.getElementById('title').value = "";
-        document.getElementById('height').value = "";
-        document.getElementById('price').value = "";
-        document.getElementById('year').value = "";
-        out.innerHTML = artWorks.length + 'db mű<br>' + allPirce + 'Ft összesen';
-    }
 });
+function writeOut() {
+    let out = document.getElementById('out');
+    let allPirce = 0;
+    artWorks.forEach(e => allPirce += e.price);
+    document.getElementById('title').value = "";
+    document.getElementById('height').value = "";
+    document.getElementById('price').value = "";
+    document.getElementById('year').value = "";
+    out.innerHTML = artWorks.length + 'db mű<br>' + allPirce + 'Ft összesen';
+}
 function titleTest(title) {
     let pattern = /^[a-z,A-Z\s]+$/;
     if (title === '' || title.length == 0 || !pattern.test(title)) {

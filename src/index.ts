@@ -2,18 +2,17 @@ import { Artwork } from "./Artwork";
 import { ErrorManager, ErrorMsg } from "./Error";
 import { Statue } from "./Statue";
 
+let errorMsgs: ErrorMsg[] = []
+errorMsgs.push(new ErrorMsg(0, 'wrong-title', 'Please enter a valid title'))
+errorMsgs.push(new ErrorMsg(1, 'wrong-year', 'Please enter a year'))
+errorMsgs.push(new ErrorMsg(2, 'wrong-price', 'Please enter a valid price'))
+errorMsgs.push(new ErrorMsg(3, 'wrong-height', 'Please enter a height'))
+let artWorks : Artwork[] = []
+
 document.addEventListener('DOMContentLoaded', () => {
     let formError = document!.getElementById('form-error') as HTMLElement
-    let errorMsgs: ErrorMsg[] = []
-    errorMsgs.push(new ErrorMsg(0, 'wrong-title', 'Please enter a valid title'))
-    errorMsgs.push(new ErrorMsg(1, 'wrong-year', 'Please enter a year'))
-    errorMsgs.push(new ErrorMsg(2, 'wrong-price', 'Please enter a valid price'))
-    errorMsgs.push(new ErrorMsg(3, 'wrong-height', 'Please enter a height'))
     let errorManager = new ErrorManager(formError, errorMsgs)
-
     errorManager.setError(-1)
-
-    let artWorks : Artwork[] = []
     writeOut()
 
     document.getElementById('title')!.addEventListener('change', e => {
@@ -63,18 +62,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
-    function writeOut() {
-        let out = document!.getElementById('out') as HTMLElement
-        let allPirce = 0
-        artWorks.forEach(e=>allPirce +=e.price);
-        (document.getElementById('title') as HTMLInputElement).value = "";
-        (document.getElementById('height') as HTMLInputElement).value = "";
-        (document.getElementById('price') as HTMLInputElement).value = "";
-        (document.getElementById('year') as HTMLInputElement).value = "";
-        out.innerHTML = artWorks.length + 'db mű<br>' + allPirce + 'Ft összesen'
-    }
+    
 });
-
+function writeOut() {
+    let out = document!.getElementById('out') as HTMLElement
+    let allPirce = 0
+    artWorks.forEach(e=>allPirce +=e.price);
+    (document.getElementById('title') as HTMLInputElement).value = "";
+    (document.getElementById('height') as HTMLInputElement).value = "";
+    (document.getElementById('price') as HTMLInputElement).value = "";
+    (document.getElementById('year') as HTMLInputElement).value = "";
+    out.innerHTML = artWorks.length + 'db mű<br>' + allPirce + 'Ft összesen'
+}
 
 function titleTest(title: string) {
     let pattern = /^[a-z,A-Z\s]+$/
