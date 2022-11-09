@@ -64,12 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
         let out = document.getElementById('out');
         let allPirce = 0;
         artWorks.forEach(e => allPirce += e.price);
-        console.log(artWorks.length + 'db mű ' + allPirce + 'Ft összesen');
-        out.textContent = artWorks.length + 'db mű ' + allPirce + 'Ft összesen';
+        document.getElementById('title').value = "";
+        document.getElementById('height').value = "";
+        document.getElementById('price').value = "";
+        document.getElementById('year').value = "";
+        out.innerHTML = artWorks.length + 'db mű<br>' + allPirce + 'Ft összesen';
     }
 });
 function titleTest(title) {
-    let pattern = /^[a-zA-Z\s]+$/;
+    let pattern = /^[a-z,A-Z\s]+$/;
     if (title === '' || title.length == 0 || !pattern.test(title)) {
         return true;
     }

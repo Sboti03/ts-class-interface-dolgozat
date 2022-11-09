@@ -66,15 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function writeOut() {
         let out = document!.getElementById('out') as HTMLElement
         let allPirce = 0
-        artWorks.forEach(e=>allPirce +=e.price)
-        console.log(artWorks.length + 'db mű ' + allPirce + 'Ft összesen')
-        out.textContent = artWorks.length + 'db mű ' + allPirce + 'Ft összesen'
+        artWorks.forEach(e=>allPirce +=e.price);
+        (document.getElementById('title') as HTMLInputElement).value = "";
+        (document.getElementById('height') as HTMLInputElement).value = "";
+        (document.getElementById('price') as HTMLInputElement).value = "";
+        (document.getElementById('year') as HTMLInputElement).value = "";
+        out.innerHTML = artWorks.length + 'db mű<br>' + allPirce + 'Ft összesen'
     }
 });
 
 
 function titleTest(title: string) {
-    let pattern = /^[a-zA-Z\s]+$/
+    let pattern = /^[a-z,A-Z\s]+$/
     if (title === '' || title.length == 0 || !pattern.test(title)) {
         return true
     } else {
