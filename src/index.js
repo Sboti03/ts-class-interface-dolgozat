@@ -16,37 +16,37 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('title').addEventListener('change', e => {
         let title = e.currentTarget.value;
         if (titleTest(title)) {
-            errorManager.setError(0);
+            errorManager.setError(errorMsgs.filter(e => e.name == 'wrong-title')[0].id);
         }
         else {
-            errorManager.removeError(0);
+            errorManager.removeError(errorMsgs.filter(e => e.name == 'wrong-title')[0].id);
         }
     });
     document.getElementById('year').addEventListener('change', e => {
         let year = e.currentTarget.value;
         if (yearTest(year)) {
-            errorManager.setError(1);
+            errorManager.setError(errorMsgs.filter(e => e.name == 'wrong-year')[0].id);
         }
         else {
-            errorManager.removeError(1);
+            errorManager.removeError(errorMsgs.filter(e => e.name == 'wrong-year')[0].id);
         }
     });
     document.getElementById('price').addEventListener('change', e => {
         let price = e.currentTarget;
         if (priceTest(price.value)) {
-            errorManager.setError(2);
+            errorManager.setError(errorMsgs.filter(e => e.name == 'wrong-price')[0].id);
         }
         else {
-            errorManager.removeError(2);
+            errorManager.removeError(errorMsgs.filter(e => e.name == 'wrong-price')[0].id);
         }
     });
     document.getElementById('height').addEventListener('change', e => {
         let height = e.currentTarget;
         if (heightTest(height.value)) {
-            errorManager.setError(3);
+            errorManager.setError(errorMsgs.filter(e => e.name == 'wrong-height')[0].id);
         }
         else {
-            errorManager.removeError(3);
+            errorManager.removeError(errorMsgs.filter(e => e.name == 'wrong-height')[0].id);
         }
     });
     document.getElementById('add').addEventListener('click', () => {
